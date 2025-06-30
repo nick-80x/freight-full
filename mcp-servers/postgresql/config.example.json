@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://username:password@localhost:5432/freight_dev"
+      ],
+      "env": {
+        "DATABASE_URL": "postgresql://username:password@localhost:5432/freight_dev"
+      }
+    }
+  }
+}

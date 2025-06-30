@@ -1,0 +1,57 @@
+{
+  "mcpServers": {
+    "postgres-freight": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://username:password@localhost:5432/freight_dev"
+      ],
+      "env": {
+        "DATABASE_URL": "postgresql://username:password@localhost:5432/freight_dev"
+      }
+    },
+    "redis-celery": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@redis/mcp-redis"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379",
+        "REDIS_DB": "0"
+      }
+    },
+    "freight-api": {
+      "command": "python",
+      "args": [
+        "./mcp-servers/fastapi-integration/freight_mcp_server.py"
+      ],
+      "env": {
+        "FREIGHT_API_URL": "http://localhost:8000",
+        "DATABASE_URL": "postgresql://username:password@localhost:5432/freight_dev",
+        "REDIS_URL": "redis://localhost:6379"
+      }
+    },
+    "docker-ops": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-docker"
+      ],
+      "env": {
+        "DOCKER_HOST": "unix:///var/run/docker.sock"
+      }
+    },
+    "github-repo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_token_here"
+      }
+    }
+  }
+}
