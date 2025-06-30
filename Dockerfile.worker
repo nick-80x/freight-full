@@ -1,0 +1,46 @@
+# Dockerfile for Freight Celery Workers
+
+FROM python:3.12-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app user
+RUN useradd -m -U freight && \
+    mkdir -p /app && \
+    chown -R freight:freight /app
+
+WORKDIR /app
+
+# Install Poetry
+RUN pip install poetry==2.1.3
+
+# Configure Poetry
+RUN poetry config virtualenvs.create false
+
+# Copy dependency files
+COPY pyproject.toml poetry.lock ./
+
+# Install dependencies
+RUN poetry install --only=main
+
+# Copy application code
+COPY --chown=freight:freight . .
+
+USER freight
+
+# Pre-compile Python files
+RUN python -m compileall -b .
+
+# Health check - check if worker can connect to broker
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD celery -A freight.worker.main inspect ping || exit 1
+
+# Default command for general worker
+CMD ["celery", "-A", "freight.worker.main", "worker", \
+     "--loglevel=info", \
+     "--concurrency=4", \
+     "--queues=default"]

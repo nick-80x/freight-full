@@ -1,5 +1,5 @@
 
-# 🚀 Railway Deployment Guide for DataBridge (FastAPI + Celery + PostgreSQL + Redis)
+# 🚀 Railway Deployment Guide for Freight (FastAPI + Celery + PostgreSQL + Redis)
 
 ## ✅ What You’ll Deploy
 1. FastAPI API app
@@ -34,7 +34,7 @@ project/
 ### 1. Push Code to GitHub
 ```bash
 git init
-git remote add origin https://github.com/yourname/databridge
+git remote add origin https://github.com/yourname/freight
 git add .
 git commit -m "Initial commit"
 git push -u origin main

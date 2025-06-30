@@ -177,7 +177,7 @@ docker-compose ps
 ### Maintenance Operations
 ```bash
 # Backup database
-docker-compose exec db pg_dump -U postgres databridge > backup.sql
+docker-compose exec db pg_dump -U postgres freight > backup.sql
 
 # Clean up unused resources
 docker system prune -f
@@ -277,4 +277,4 @@ docker top <container_name>
 - Database connection pooling
 - Redis clustering for high availability
 
-This Docker MCP server integration provides comprehensive container management capabilities for the DataBridge platform, enabling AI-assisted DevOps operations and infrastructure management.
+This Docker MCP server integration provides comprehensive container management capabilities for the Freight platform, enabling AI-assisted DevOps operations and infrastructure management.

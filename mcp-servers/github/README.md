@@ -20,7 +20,7 @@ This configuration sets up the GitHub MCP server for the Freight project, enabli
 
 2. **GitHub Token Setup**
    Create a Personal Access Token with required permissions:
-   
+
    **Required Scopes:**
    - `repo` (Full repository access)
    - `read:user` (Read user profile data)
@@ -110,16 +110,16 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-    
+
     - name: Run tests
       run: |
         pytest tests/ -v --cov=freight
-        
+
     - name: Run Celery tests
       run: |
         celery -A freight.worker.app worker --detach
@@ -141,7 +141,7 @@ jobs:
 "Analyze the changes in the last 5 commits to the API module"
 "Show me all files modified in pull request #32"
 "Find all Python files that import the 'celery' module"
-"Review the code changes in src/databridge/migration/retry.py"
+"Review the code changes in src/freight/migration/retry.py"
 ```
 
 ### Issue Management
@@ -235,7 +235,7 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "develop"
-    
+
   - package-ecosystem: "docker"
     directory: "/"
     schedule:

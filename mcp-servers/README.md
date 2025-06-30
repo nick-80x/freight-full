@@ -166,7 +166,7 @@ npx @modelcontextprotocol/server-postgres --help
 npx @redis/mcp-redis --help
 
 # Test FastAPI MCP Server
-python fastapi-integration/databridge_mcp_server.py
+python fastapi-integration/freight_mcp_server.py
 ```
 
 ### 2. Validate Configuration
@@ -183,7 +183,7 @@ env | grep -E "(DATABASE_URL|REDIS_URL|GITHUB_PERSONAL_ACCESS_TOKEN)"
 # Start all required services
 docker-compose up -d postgres redis
 
-# Start DataBridge API
+# Start Freight API
 cd ../api && python main.py
 
 # Test MCP server connectivity
@@ -207,7 +207,7 @@ npm install -g @modelcontextprotocol/server-postgres
 pg_isready -h localhost -p 5432
 
 # Test connection manually
-psql "postgresql://username:password@localhost:5432/databridge_dev"
+psql "postgresql://username:password@localhost:5432/freight_dev"
 ```
 
 #### 3. Redis Connection Issues
